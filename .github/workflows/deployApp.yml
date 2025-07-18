@@ -2,21 +2,21 @@
 name: Deploy Razor App to Azure
 
 on:
-  workflow_dispatch:
+  workflow-dispatch:
 
-  jobs:
-    build:
-      #runs-on means run on VM (here is ubuntu) each time this job is triggered
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v3
-          with:
-            dotnet-version: 8.0.x
+jobs:
+  build:
+    #runs-on means run on VM (here is ubuntu) each time this job is triggered
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
 
-        - name: Install dependencies
-          run: dotnet restore ./RazorPagesApp/RazorPagesApp.csproj
+      - name: Install dependencies
+        run: dotnet restore ./RazorPagesApp/RazorPagesApp.csproj
 
-        - name: Build
-          run: dotnet build ./RazorPagesApp/RazorPagesApp.csproj configuration --release --no-restore
+      - name: Build
+        run: dotnet build ./RazorPagesApp/RazorPagesApp.csproj configuration --release --no-restore
