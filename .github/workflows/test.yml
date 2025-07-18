@@ -1,7 +1,9 @@
 name: Manual Deployment
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   say-hello:
