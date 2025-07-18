@@ -2,7 +2,9 @@
 name: Deploy Shazia's Razor_Pages_App to Azure
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
