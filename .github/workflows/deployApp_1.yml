@@ -6,6 +6,9 @@ on:
     branches:
       - master
 
+env:
+  AZURE_WEBAPP_NAME: 'RazorAppForGithubActions'
+
 jobs:
   build:
     runs-on: windows-latest
@@ -22,3 +25,15 @@ jobs:
 
       - name: Build
         run: dotnet build ./RazorPagesApp/RazorPagesApp.csproj --configuration Release --no-restore
+
+      #publish
+      - name: Publish
+        run: dotnet publish ./RazorPagesApp/RazorPagesApp.csproj --configuration Release --output ./publish
+
+      #deploy to Azure
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.RAZORPAGES_APP_SECRETS }}
+          package: ./publish
