@@ -1,5 +1,5 @@
 # Github actions workflow to deploy a Razor app to Azure App Service
-name: Deploy Razor_Pages_App to Azure
+name: Deploy Shazia's Razor_Pages_App to Azure
 
 on:
   workflow_dispatch:
